@@ -1,0 +1,264 @@
+Enter password: *****************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 29
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use student
+Database changed
+mysql> select * from details;
+ERROR 1146 (42S02): Table 'student.details' doesn't exist
+mysql> select * from detail;
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| eddddz  |   20 | male   |
+| shank   |   19 | female |
++---------+------+--------+
+3 rows in set (0.01 sec)
+
+mysql> select * from detail where name like "a%";
+Empty set (0.01 sec)
+
+mysql> select * from detail where name like "n%";
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
++---------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from detail where name like "%t";
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
++---------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from detail where name like "%e%";
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| eddddz  |   20 | male   |
++---------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from detail where name like "s%k";
++-------+------+--------+
+| name  | age  | gender |
++-------+------+--------+
+| shank |   19 | female |
++-------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from detail where name like "_a%";
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
++---------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from detail where name like "_ee";
+Empty set (0.00 sec)
+
+mysql> select * from detail where name regexp "vn";
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
++---------+------+--------+
+1 row in set (0.03 sec)
+
+mysql> select * from detail where name regexp "^vn";
+Empty set (0.00 sec)
+
+mysql> select * from detail where name regexp "^na";
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
++---------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from detail where name regexp "et$";
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
++---------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from detail where name regexp "[ns]";
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| shank   |   19 | female |
++---------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from detail where name regexp "^[ns]";
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| shank   |   19 | female |
++---------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from detail where name regexp "^[es]$";
+Empty set (0.00 sec)
+
+mysql> select * from detail where name regexp "^[e-s]h";
++-------+------+--------+
+| name  | age  | gender |
++-------+------+--------+
+| shank |   19 | female |
++-------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from detail where name regexp "n|e"
+    -> ;
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| eddddz  |   20 | male   |
+| shank   |   19 | female |
++---------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from detail order ny name desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ny name desc' at line 1
+mysql> select * from detail where city = "age" order ny name desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ny name desc' at line 1
+mysql> select * from detail  order ny name desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ny name desc' at line 1
+mysql> select * from detail  order by name desc;
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| shank   |   19 | female |
+| navneet |   19 | Male   |
+| eddddz  |   20 | male   |
++---------+------+--------+
+3 rows in set (0.01 sec)
+
+mysql> select * from detail  order by name aesc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'aesc' at line 1
+mysql> select * from detail  order by name asc;
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| eddddz  |   20 | male   |
+| navneet |   19 | Male   |
+| shank   |   19 | female |
++---------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from detail  order by name, age asc;
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| eddddz  |   20 | male   |
+| navneet |   19 | Male   |
+| shank   |   19 | female |
++---------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select distinct gender from detail ;
++--------+
+| gender |
++--------+
+| Male   |
+| female |
++--------+
+2 rows in set (0.01 sec)
+
+mysql> select distinct age from detail order by age ;
++------+
+| age  |
++------+
+|   19 |
+|   20 |
++------+
+2 rows in set (0.00 sec)
+
+mysql> select distinct age from detail order by age asc;
++------+
+| age  |
++------+
+|   19 |
+|   20 |
++------+
+2 rows in set (0.00 sec)
+
+mysql> select * from detail where age is null;
+Empty set (0.00 sec)
+
+mysql> select * from detail where age is not null;
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| eddddz  |   20 | male   |
+| shank   |   19 | female |
++---------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from detail where limit 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'limit 2' at line 1
+mysql> select * from detail where age  limit 2;
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| eddddz  |   20 | male   |
++---------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from detail where age  limit 3 , 3;
+Empty set (0.00 sec)
+
+mysql> select * from detail where age  limit 0 , 3;
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| eddddz  |   20 | male   |
+| shank   |   19 | female |
++---------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

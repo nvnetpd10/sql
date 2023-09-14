@@ -1,0 +1,161 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| compony_211b193    |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| university         |
+| university_211b047 |
+| university_211b082 |
+| university_211b269 |
+| university_211b344 |
+| university_211b378 |
+| world              |
++--------------------+
+13 rows in set (0.03 sec)
+
+mysql> show tables;
+ERROR 1046 (3D000): No database selected
+mysql> use compony_211b193
+Database changed
+mysql> shhow tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'shhow tables' at line 1
+mysql> show tables;
++---------------------------+
+| Tables_in_compony_211b193 |
++---------------------------+
+| department                |
+| employee                  |
+| work_on                   |
++---------------------------+
+3 rows in set (0.13 sec)
+
+mysql> select cout(*) from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) from employee' at line 1
+mysql> select count(*) from employee;
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.19 sec)
+
+mysql> select * from employee where dno=2;
+ERROR 1054 (42S22): Unknown column 'dno' in 'where clause'
+mysql> select * from employee;
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| Fname    | Mnit | Lname   | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| john     | B    | Smith   | 123456789 | 1965-01-09 | 731 fondron | M    |  30000 | 333445555 |
+| franklin | T    | Wong    | 333445555 | 1955-01-09 | 638 Voss    | M    |  40000 | 888665555 |
+| Alicia   | J    | Zelaya  | 999887777 | 1968-01-19 | 3321 castle | F    |  25000 | 987654321 |
+| Jonnifer | S    | wallaco | 987654321 | 1941-08-20 | 291 Berry   | F    |  43000 | 888665555 |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+4 rows in set (0.00 sec)
+
+mysql>  select * from employee where salary>40000;
++----------+------+---------+-----------+------------+-----------+------+--------+-----------+
+| Fname    | Mnit | Lname   | Ssn       | bdate      | Address   | sex  | salary | Super_ssn |
++----------+------+---------+-----------+------------+-----------+------+--------+-----------+
+| Jonnifer | S    | wallaco | 987654321 | 1941-08-20 | 291 Berry | F    |  43000 | 888665555 |
++----------+------+---------+-----------+------------+-----------+------+--------+-----------+
+1 row in set (0.03 sec)
+
+mysql>  select * from employee where salary 25000 and 43000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '25000 and 43000' at line 1
+mysql> select * from employee where salary between  25000 and 43000;
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| Fname    | Mnit | Lname   | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| john     | B    | Smith   | 123456789 | 1965-01-09 | 731 fondron | M    |  30000 | 333445555 |
+| franklin | T    | Wong    | 333445555 | 1955-01-09 | 638 Voss    | M    |  40000 | 888665555 |
+| Alicia   | J    | Zelaya  | 999887777 | 1968-01-19 | 3321 castle | F    |  25000 | 987654321 |
+| Jonnifer | S    | wallaco | 987654321 | 1941-08-20 | 291 Berry   | F    |  43000 | 888665555 |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee where sex = 'M';
++----------+------+-------+-----------+------------+-------------+------+--------+-----------+
+| Fname    | Mnit | Lname | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++----------+------+-------+-----------+------------+-------------+------+--------+-----------+
+| john     | B    | Smith | 123456789 | 1965-01-09 | 731 fondron | M    |  30000 | 333445555 |
+| franklin | T    | Wong  | 333445555 | 1955-01-09 | 638 Voss    | M    |  40000 | 888665555 |
++----------+------+-------+-----------+------------+-------------+------+--------+-----------+
+2 rows in set (0.03 sec)
+
+mysql> select * from employee where Fname like 'A%' ;
++--------+------+--------+-----------+------------+-------------+------+--------+-----------+
+| Fname  | Mnit | Lname  | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++--------+------+--------+-----------+------------+-------------+------+--------+-----------+
+| Alicia | J    | Zelaya | 999887777 | 1968-01-19 | 3321 castle | F    |  25000 | 987654321 |
++--------+------+--------+-----------+------------+-------------+------+--------+-----------+
+1 row in set (0.02 sec)
+
+mysql>  select * from employee where Fname like '____i%';
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| Fname    | Mnit | Lname   | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| Alicia   | J    | Zelaya  | 999887777 | 1968-01-19 | 3321 castle | F    |  25000 | 987654321 |
+| Jonnifer | S    | wallaco | 987654321 | 1941-08-20 | 291 Berry   | F    |  43000 | 888665555 |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+2 rows in set (0.00 sec)
+
+mysql>
+
+mysql> select max(salary) from employee;
++-------------+
+| max(salary) |
++-------------+
+|       43000 |
++-------------+
+1 row in set (0.03 sec)
+
+mysql> select count(salary) from employee;
++---------------+
+| count(salary) |
++---------------+
+|             4 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary) from employee;
++-------------+
+| sum(salary) |
++-------------+
+|      138000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(Super_ssn) from employee;
++------------------+
+| count(Super_ssn) |
++------------------+
+|                4 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql>mysql> select count(*)  as no_of_recs from employee;
++------------+
+| no_of_recs |
++------------+
+|          4 |
++------------+
+1 row in set (0.00 sec)
+

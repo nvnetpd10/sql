@@ -1,0 +1,139 @@
+use student;
+Database changed
+create table constraints( id int NOT NULL UNIQUE , name varchar(50) NOT NULL, age int NOT NULL CHECK (age >=18 ) , gender varchar(10) NOT NULL , phone varchar(10) NOT NULL UNIQUE , city varchar(20)  NOT NULL DEFAULT 'agra' );
+Query OK, 0 rows affected (0.14 sec)
+
+insert from constraints("5", "sahil" , "19" , "M" , "9876543212" );
+ use student
+Database changed
+mysql> select *  from details;
+ERROR 1146 (42S02): Table 'student.details' doesn't exist
+mysql>  select *  from detail;
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| eddddz  |   20 | male   |
+| shank   |   19 | female |
++---------+------+--------+
+3 rows in set (0.01 sec)
+
+mysql> select name from detail;
++---------+
+| name    |
++---------+
+| navneet |
+| eddddz  |
+| shank   |
++---------+
+3 rows in set (0.00 sec)
+
+mysql> select name AS yoyo from detail;
++---------+
+| yoyo    |
++---------+
+| navneet |
+| eddddz  |
+| shank   |
++---------+
+3 rows in set (0.00 sec)
+
+mysql> select name from detail;
++---------+
+| name    |
++---------+
+| navneet |
+| eddddz  |
+| shank   |
++---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from detail where gender= "f" ;
+Empty set (0.01 sec)
+
+mysql> select * from detail where gender= "Female" ;
++-------+------+--------+
+| name  | age  | gender |
++-------+------+--------+
+| shank |   19 | female |
++-------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from detail where age >= "20" ;
++--------+------+--------+
+| name   | age  | gender |
++--------+------+--------+
+| eddddz |   20 | male   |
++--------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from detail where age >= "17" AND age <="20";
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| eddddz  |   20 | male   |
+| shank   |   19 | female |
++---------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from detail where age = "17" OR  age <="20";
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| eddddz  |   20 | male   |
+| shank   |   19 | female |
++---------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from detail where NOT age = "20" ;
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| shank   |   19 | female |
++---------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from STUDENT.DETAIL;
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| eddddz  |   20 | male   |
+| shank   |   19 | female |
++---------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from STUDENT.DETAIL WHERE age IN(19,20);
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| eddddz  |   20 | male   |
+| shank   |   19 | female |
++---------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from STUDENT.DETAIL WHERE  age not IN(19,20);
+Empty set (0.00 sec)
+
+mysql> select * from STUDENT.DETAIL WHERE  age BETWEEN 17 and 19;
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| shank   |   19 | female |
++---------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from STUDENT.DETAIL WHERE  age  NOT BETWEEN 17 and 19;
++--------+------+--------+
+| name   | age  | gender |
++--------+------+--------+
+| eddddz |   20 | male   |
++--------+------+--------+
+1 row in set (0.00 sec)
+
+mysql>

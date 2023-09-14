@@ -1,0 +1,14 @@
+f2 = to edit
+ctrl+f = to find
+ctrl+h = find and replace
+ctrl+y = redo
+ctrl+g = to go in any cell
+ctrl+b = bold
+ctrl+i = italic
+ctrl+u = underline
+ctrl+1 = to go to numbers
+ctrl+enter = to put function in all selected cell
+f4 = for locking cell
+shift+f2 = to create comment
+ctrl+e = flash filling 
+ctrl+n = to create a new file

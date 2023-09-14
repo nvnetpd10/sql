@@ -1,0 +1,93 @@
+mysql> create database innerjoin;
+Query OK, 1 row affected (0.11 sec)
+
+mysql> use database;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use innerjoin;
+Database changed
+
+mysql> create table orders(oid int(5) , cusid int(2) , emplid int(1) , odate date , shippid int(1) );
+Query OK, 0 rows affected, 4 warnings (0.08 sec)
+
+insert into orders VALUES ("10308", "2", "7", "1996-09-18","3") , ("10309" , "37" , "3" ,"1996-09-19", "1") , ("10310","77" ,"8" ,"1996-09-20" ,"2");
+Query OK, 3 rows affected (0.05 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+mysql> select * from orders;
++-------+-------+--------+------------+---------+
+| oid   | cusid | emplid | odate      | shippid |
++-------+-------+--------+------------+---------+
+| 10308 |     2 |      7 | 1996-09-18 |       3 |
+| 10309 |    37 |      3 | 1996-09-19 |       1 |
+| 10310 |    77 |      8 | 1996-09-20 |       2 |
++-------+-------+--------+------------+---------+
+3 rows in set (0.01 sec)
+
+mysql> create table customers(cusid int(1) , cusname varchar(40) , contname varchar(30) , address varchar(30) , city varchar(20) , postcode int(5) , country varchar(10));
+Query OK, 0 rows affected, 2 warnings (0.03 sec)
+
+mysql> insert into customers VALUES ("1", "wwwwwwwwww", "maria", "qqqqqq","berlin" , "12209" , "germany") , ("2" , "eeeeeeeeee" , "ana" ,"aaaaaaaa", "mexico" , "05021" , "mexico") , ("3","xxxxxxxx" ,"antonio" ,"fffffff" ,"mexico" , "05023" , "mexico");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from customers;
++-------+------------+----------+----------+--------+----------+---------+
+| cusid | cusname    | contname | address  | city   | postcode | country |
++-------+------------+----------+----------+--------+----------+---------+
+|     1 | wwwwwwwwww | maria    | qqqqqq   | berlin |    12209 | germany |
+|     2 | eeeeeeeeee | ana      | aaaaaaaa | mexico |     5021 | mexico  |
+|     3 | xxxxxxxx   | antonio  | fffffff  | mexico |     5023 | mexico  |
++-------+------------+----------+----------+--------+----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT orders.oid, customers.cusname from orders INNER JOIN customers ON orders.cusid = customers.cusid;
++-------+------------+
+| oid   | cusname    |
++-------+------------+
+| 10308 | eeeeeeeeee |
++-------+------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT customers.cusname, orders.oid from customers LEFT JOIN orders ON customers.cusid = orders.cusid ORDER BY customers.cusname;
++------------+-------+
+| cusname    | oid   |
++------------+-------+
+| eeeeeeeeee | 10308 |
+| wwwwwwwwww |  NULL |
+| xxxxxxxx   |  NULL |
++------------+-------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT customers.cusname, orders.oid from customers RIGHT  JOIN orders ON customers.cusid = orders.cusid ORDER BY customers.cusname;
++------------+-------+
+| cusname    | oid   |
++------------+-------+
+| NULL       | 10309 |
+| NULL       | 10310 |
+| eeeeeeeeee | 10308 |
++------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT customers.cusname, orders.oid from customers  CROSS JOIN orders WHERE customers.cusid = orders.cusid;
++------------+-------+
+| cusname    | oid   |
++------------+-------+
+| eeeeeeeeee | 10308 |
++------------+-------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

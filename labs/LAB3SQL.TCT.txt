@@ -1,0 +1,531 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 39
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database COMPONY_211B193;
+Query OK, 1 row affected (0.70 sec)
+
+mysql> use COMPONY_211B193;
+Database changed
+mysql> create table EMPLOYEE( Fname varchar() , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address var' at line 1
+mysql> create table EMPLOYEE( Fname varchar(20) , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) )' at line 1
+mysql>  create table EMPLOYEE( Fname varchar(20) , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+Query OK, 0 rows affected, 3 warnings (1.38 sec)
+
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" , "731 fondron, Houston, TX" , "M" , "30000" , "333445555" );
+ERROR 1406 (22001): Data too long for column 'Address' at row 1
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" ,"731 fondron,Houston,TX", "M" , "30000" , "333445555" );
+ERROR 1406 (22001): Data too long for column 'Address' at row 1
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" ,"731 fondron", "M" , "30000" , "333445555" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from EMPLOYEE;
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+| Fname | Mnit | Lname | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+| john  | B    | Smith | 123456789 | 1965-01-09 | 731 fondron | M    |  30000 | 333445555 |
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+1 row in set (0.00 sec)
+
+mysql> insert into EMPLOYEE values("franklin" ,  "T" , "Wong" , "333445555" , "1955-01-09" , "638 Voss" , "M" , "40000" , "888665555" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into EMPLOYEE values("Alicia" , "J", "Zelaya" , "999887777" , "1968-01-19" , "3321 castle" ,"F" , "25000" , "987654321" );
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into EMPLOYEE values("Jonnifer" , "S" , "wallaco" , "987654321" , "1941-08-20" , "291 Berry" , "F" , "43000" , "888665555" );
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from EMPLOYEE;
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| Fname    | Mnit | Lname   | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| john     | B    | Smith   | 123456789 | 1965-01-09 | 731 fondron | M    |  30000 | 333445555 |
+| franklin | T    | Wong    | 333445555 | 1955-01-09 | 638 Voss    | M    |  40000 | 888665555 |
+| Alicia   | J    | Zelaya  | 999887777 | 1968-01-19 | 3321 castle | F    |  25000 | 987654321 |
+| Jonnifer | S    | wallaco | 987654321 | 1941-08-20 | 291 Berry   | F    |  43000 | 888665555 |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> create table DEPARTMENT( Dname varchar(20) , Dnumber int(1) , Mgr_ssn int(9) , Mgr_start_date date );
+Query OK, 0 rows affected, 2 warnings (0.76 sec)
+
+mysql> insert into DEPARTMENT values("Research" , "5" , "333445555" , "1988-05-22" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from DEPARTMENT;
++----------+---------+-----------+----------------+
+| Dname    | Dnumber | Mgr_ssn   | Mgr_start_date |
++----------+---------+-----------+----------------+
+| Research |       5 | 333445555 | 1988-05-22     |
++----------+---------+-----------+----------------+
+1 row in set (0.00 sec)
+
+mysql> insert into DEPARTMENT values( "Administration" , "4" , "987654321" , "1995-01-01" );
+Query OK, 1 row affected (0.04 sec)
+
+mysql> create table WORK_ON( Essn int(9) ,Pno int(1) , Hours float(3) );
+Query OK, 0 rows affected, 2 warnings (0.13 sec)
+
+mysql> insert into DEPARMENT values("123456789" ,  "1" , "32.5" );
+ERROR 1146 (42S02): Table 'compony_211b193.deparment' doesn't exist
+mysql> insert into WORKS_ON values("123456789" ,  "1" , "32.5" );
+ERROR 1146 (42S02): Table 'compony_211b193.works_on' doesn't exist
+mysql>  insert into WORK_ON values("123456789" ,  "1" , "32.5" );
+Query OK, 1 row affected (0.08 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 39
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database COMPONY_211B193;
+Query OK, 1 row affected (0.70 sec)
+
+mysql> use COMPONY_211B193;
+Database changed
+mysql> create table EMPLOYEE( Fname varchar() , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address var' at line 1
+mysql> create table EMPLOYEE( Fname varchar(20) , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) )' at line 1
+mysql>  create table EMPLOYEE( Fname varchar(20) , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+Query OK, 0 rows affected, 3 warnings (1.38 sec)
+
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" , "731 fondron, Houston, TX" , "M" , "30000" , "333445555" );
+ERROR 1406 (22001): Data too long for column 'Address' at row 1
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" ,"731 fondron,Houston,TX", "M" , "30000" , "333445555" );
+ERROR 1406 (22001): Data too long for column 'Address' at row 1
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" ,"731 fondron", "M" , "30000" , "333445555" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from EMPLOYEE;
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+| Fname | Mnit | Lname | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+| john  | B    | Smith | 123456789 | 1965-01-09 | 731 fondron | M    |  30000 | 333445555 |
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+1 row in set (0.00 sec)
+
+mysql> insert into EMPLOYEE values("franklin" ,  "T" , "Wong" , "333445555" , "1955-01-09" , "638 Voss" , "M" , "40000" , "888665555" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into EMPLOYEE values("Alicia" , "J", "Zelaya" , "999887777" , "1968-01-19" , "3321 castle" ,"F" , "25000" , "987654321" );
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into EMPLOYEE values("Jonnifer" , "S" , "wallaco" , "987654321" , "1941-08-20" , "291 Berry" , "F" , "43000" , "888665555" );
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from EMPLOYEE;
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| Fname    | Mnit | Lname   | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| john     | B    | Smith   | 123456789 | 1965-01-09 | 731 fondron | M    |  30000 | 333445555 |
+| franklin | T    | Wong    | 333445555 | 1955-01-09 | 638 Voss    | M    |  40000 | 888665555 |
+| Alicia   | J    | Zelaya  | 999887777 | 1968-01-19 | 3321 castle | F    |  25000 | 987654321 |
+| Jonnifer | S    | wallaco | 987654321 | 1941-08-20 | 291 Berry   | F    |  43000 | 888665555 |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> create table DEPARTMENT( Dname varchar(20) , Dnumber int(1) , Mgr_ssn int(9) , Mgr_start_date date );
+Query OK, 0 rows affected, 2 warnings (0.76 sec)
+
+mysql> insert into DEPARTMENT values("Research" , "5" , "333445555" , "1988-05-22" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from DEPARTMENT;
++----------+---------+-----------+----------------+
+| Dname    | Dnumber | Mgr_ssn   | Mgr_start_date |
++----------+---------+-----------+----------------+
+| Research |       5 | 333445555 | 1988-05-22     |
++----------+---------+-----------+----------------+
+1 row in set (0.00 sec)
+
+mysql> insert into DEPARTMENT values( "Administration" , "4" , "987654321" , "1995-01-01" );
+Query OK, 1 row affected (0.04 sec)
+
+mysql> create table WORK_ON( Essn int(9) ,Pno int(1) , Hours float(3) );
+Query OK, 0 rows affected, 2 warnings (0.13 sec)
+
+mysql> insert into DEPARMENT values("123456789" ,  "1" , "32.5" );
+ERROR 1146 (42S02): Table 'compony_211b193.deparment' doesn't exist
+mysql> insert into WORKS_ON values("123456789" ,  "1" , "32.5" );
+ERROR 1146 (42S02): Table 'compony_211b193.works_on' doesn't exist
+mysql>  insert into WORK_ON values("123456789" ,  "1" , "32.5" );
+Query OK, 1 row affected (0.08 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 39
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database COMPONY_211B193;
+Query OK, 1 row affected (0.70 sec)
+
+mysql> use COMPONY_211B193;
+Database changed
+mysql> create table EMPLOYEE( Fname varchar() , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address var' at line 1
+mysql> create table EMPLOYEE( Fname varchar(20) , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) )' at line 1
+mysql>  create table EMPLOYEE( Fname varchar(20) , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+Query OK, 0 rows affected, 3 warnings (1.38 sec)
+
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" , "731 fondron, Houston, TX" , "M" , "30000" , "333445555" );
+ERROR 1406 (22001): Data too long for column 'Address' at row 1
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" ,"731 fondron,Houston,TX", "M" , "30000" , "333445555" );
+ERROR 1406 (22001): Data too long for column 'Address' at row 1
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" ,"731 fondron", "M" , "30000" , "333445555" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from EMPLOYEE;
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+| Fname | Mnit | Lname | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+| john  | B    | Smith | 123456789 | 1965-01-09 | 731 fondron | M    |  30000 | 333445555 |
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+1 row in set (0.00 sec)
+
+mysql> insert into EMPLOYEE values("franklin" ,  "T" , "Wong" , "333445555" , "1955-01-09" , "638 Voss" , "M" , "40000" , "888665555" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into EMPLOYEE values("Alicia" , "J", "Zelaya" , "999887777" , "1968-01-19" , "3321 castle" ,"F" , "25000" , "987654321" );
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into EMPLOYEE values("Jonnifer" , "S" , "wallaco" , "987654321" , "1941-08-20" , "291 Berry" , "F" , "43000" , "888665555" );
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from EMPLOYEE;
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| Fname    | Mnit | Lname   | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| john     | B    | Smith   | 123456789 | 1965-01-09 | 731 fondron | M    |  30000 | 333445555 |
+| franklin | T    | Wong    | 333445555 | 1955-01-09 | 638 Voss    | M    |  40000 | 888665555 |
+| Alicia   | J    | Zelaya  | 999887777 | 1968-01-19 | 3321 castle | F    |  25000 | 987654321 |
+| Jonnifer | S    | wallaco | 987654321 | 1941-08-20 | 291 Berry   | F    |  43000 | 888665555 |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> create table DEPARTMENT( Dname varchar(20) , Dnumber int(1) , Mgr_ssn int(9) , Mgr_start_date date );
+Query OK, 0 rows affected, 2 warnings (0.76 sec)
+
+mysql> insert into DEPARTMENT values("Research" , "5" , "333445555" , "1988-05-22" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from DEPARTMENT;
++----------+---------+-----------+----------------+
+| Dname    | Dnumber | Mgr_ssn   | Mgr_start_date |
++----------+---------+-----------+----------------+
+| Research |       5 | 333445555 | 1988-05-22     |
++----------+---------+-----------+----------------+
+1 row in set (0.00 sec)
+
+mysql> insert into DEPARTMENT values( "Administration" , "4" , "987654321" , "1995-01-01" );
+Query OK, 1 row affected (0.04 sec)
+
+mysql> create table WORK_ON( Essn int(9) ,Pno int(1) , Hours float(3) );
+Query OK, 0 rows affected, 2 warnings (0.13 sec)
+
+mysql> insert into DEPARMENT values("123456789" ,  "1" , "32.5" );
+ERROR 1146 (42S02): Table 'compony_211b193.deparment' doesn't exist
+mysql> insert into WORKS_ON values("123456789" ,  "1" , "32.5" );
+ERROR 1146 (42S02): Table 'compony_211b193.works_on' doesn't exist
+mysql>  insert into WORK_ON values("123456789" ,  "1" , "32.5" );
+Query OK, 1 row affected (0.08 sec)
+
+mysql>
+
+
+
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 39
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database COMPONY_211B193;
+Query OK, 1 row affected (0.70 sec)
+
+mysql> use COMPONY_211B193;
+Database changed
+mysql> create table EMPLOYEE( Fname varchar() , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address var' at line 1
+mysql> create table EMPLOYEE( Fname varchar(20) , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) )' at line 1
+mysql>  create table EMPLOYEE( Fname varchar(20) , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+Query OK, 0 rows affected, 3 warnings (1.38 sec)
+
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" , "731 fondron, Houston, TX" , "M" , "30000" , "333445555" );
+ERROR 1406 (22001): Data too long for column 'Address' at row 1
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" ,"731 fondron,Houston,TX", "M" , "30000" , "333445555" );
+ERROR 1406 (22001): Data too long for column 'Address' at row 1
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" ,"731 fondron", "M" , "30000" , "333445555" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from EMPLOYEE;
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+| Fname | Mnit | Lname | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+| john  | B    | Smith | 123456789 | 1965-01-09 | 731 fondron | M    |  30000 | 333445555 |
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+1 row in set (0.00 sec)
+
+mysql> insert into EMPLOYEE values("franklin" ,  "T" , "Wong" , "333445555" , "1955-01-09" , "638 Voss" , "M" , "40000" , "888665555" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into EMPLOYEE values("Alicia" , "J", "Zelaya" , "999887777" , "1968-01-19" , "3321 castle" ,"F" , "25000" , "987654321" );
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into EMPLOYEE values("Jonnifer" , "S" , "wallaco" , "987654321" , "1941-08-20" , "291 Berry" , "F" , "43000" , "888665555" );
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from EMPLOYEE;
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| Fname    | Mnit | Lname   | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| john     | B    | Smith   | 123456789 | 1965-01-09 | 731 fondron | M    |  30000 | 333445555 |
+| franklin | T    | Wong    | 333445555 | 1955-01-09 | 638 Voss    | M    |  40000 | 888665555 |
+| Alicia   | J    | Zelaya  | 999887777 | 1968-01-19 | 3321 castle | F    |  25000 | 987654321 |
+| Jonnifer | S    | wallaco | 987654321 | 1941-08-20 | 291 Berry   | F    |  43000 | 888665555 |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> create table DEPARTMENT( Dname varchar(20) , Dnumber int(1) , Mgr_ssn int(9) , Mgr_start_date date );
+Query OK, 0 rows affected, 2 warnings (0.76 sec)
+
+mysql> insert into DEPARTMENT values("Research" , "5" , "333445555" , "1988-05-22" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from DEPARTMENT;
++----------+---------+-----------+----------------+
+| Dname    | Dnumber | Mgr_ssn   | Mgr_start_date |
++----------+---------+-----------+----------------+
+| Research |       5 | 333445555 | 1988-05-22     |
++----------+---------+-----------+----------------+
+1 row in set (0.00 sec)
+
+mysql> insert into DEPARTMENT values( "Administration" , "4" , "987654321" , "1995-01-01" );
+Query OK, 1 row affected (0.04 sec)
+
+mysql> create table WORK_ON( Essn int(9) ,Pno int(1) , Hours float(3) );
+Query OK, 0 rows affected, 2 warnings (0.13 sec)
+
+mysql> insert into DEPARMENT values("123456789" ,  "1" , "32.5" );
+ERROR 1146 (42S02): Table 'compony_211b193.deparment' doesn't exist
+mysql> insert into WORKS_ON values("123456789" ,  "1" , "32.5" );
+ERROR 1146 (42S02): Table 'compony_211b193.works_on' doesn't exist
+mysql>  insert into WORK_ON values("123456789" ,  "1" , "32.5" );
+Query OK, 1 row affected (0.08 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+elcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 39
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database COMPONY_211B193;
+Query OK, 1 row affected (0.70 sec)
+
+mysql> use COMPONY_211B193;
+Database changed
+mysql> create table EMPLOYEE( Fname varchar() , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address var' at line 1
+mysql> create table EMPLOYEE( Fname varchar(20) , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(10) , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) )' at line 1
+mysql>  create table EMPLOYEE( Fname varchar(20) , Mnit char(1) , Lname varchar(20) , Ssn int(9) , bdate date , Address varchar(20) , sex char(1) , salary int(5) , Super_ssn int(9) );
+Query OK, 0 rows affected, 3 warnings (1.38 sec)
+
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" , "731 fondron, Houston, TX" , "M" , "30000" , "333445555" );
+ERROR 1406 (22001): Data too long for column 'Address' at row 1
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" ,"731 fondron,Houston,TX", "M" , "30000" , "333445555" );
+ERROR 1406 (22001): Data too long for column 'Address' at row 1
+mysql> insert into EMPLOYEE values("john", "B" , "Smith" ,"123456789" , "1965-01-09" ,"731 fondron", "M" , "30000" , "333445555" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from EMPLOYEE;
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+| Fname | Mnit | Lname | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+| john  | B    | Smith | 123456789 | 1965-01-09 | 731 fondron | M    |  30000 | 333445555 |
++-------+------+-------+-----------+------------+-------------+------+--------+-----------+
+1 row in set (0.00 sec)
+
+mysql> insert into EMPLOYEE values("franklin" ,  "T" , "Wong" , "333445555" , "1955-01-09" , "638 Voss" , "M" , "40000" , "888665555" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into EMPLOYEE values("Alicia" , "J", "Zelaya" , "999887777" , "1968-01-19" , "3321 castle" ,"F" , "25000" , "987654321" );
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into EMPLOYEE values("Jonnifer" , "S" , "wallaco" , "987654321" , "1941-08-20" , "291 Berry" , "F" , "43000" , "888665555" );
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from EMPLOYEE;
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| Fname    | Mnit | Lname   | Ssn       | bdate      | Address     | sex  | salary | Super_ssn |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+| john     | B    | Smith   | 123456789 | 1965-01-09 | 731 fondron | M    |  30000 | 333445555 |
+| franklin | T    | Wong    | 333445555 | 1955-01-09 | 638 Voss    | M    |  40000 | 888665555 |
+| Alicia   | J    | Zelaya  | 999887777 | 1968-01-19 | 3321 castle | F    |  25000 | 987654321 |
+| Jonnifer | S    | wallaco | 987654321 | 1941-08-20 | 291 Berry   | F    |  43000 | 888665555 |
++----------+------+---------+-----------+------------+-------------+------+--------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> create table DEPARTMENT( Dname varchar(20) , Dnumber int(1) , Mgr_ssn int(9) , Mgr_start_date date );
+Query OK, 0 rows affected, 2 warnings (0.76 sec)
+
+mysql> insert into DEPARTMENT values("Research" , "5" , "333445555" , "1988-05-22" );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from DEPARTMENT;
++----------+---------+-----------+----------------+
+| Dname    | Dnumber | Mgr_ssn   | Mgr_start_date |
++----------+---------+-----------+----------------+
+| Research |       5 | 333445555 | 1988-05-22     |
++----------+---------+-----------+----------------+
+1 row in set (0.00 sec)
+
+mysql> insert into DEPARTMENT values( "Administration" , "4" , "987654321" , "1995-01-01" );
+Query OK, 1 row affected (0.04 sec)
+
+mysql> create table WORK_ON( Essn int(9) ,Pno int(1) , Hours float(3) );
+Query OK, 0 rows affected, 2 warnings (0.13 sec)
+
+mysql> insert into DEPARMENT values("123456789" ,  "1" , "32.5" );
+ERROR 1146 (42S02): Table 'compony_211b193.deparment' doesn't exist
+mysql> insert into WORKS_ON values("123456789" ,  "1" , "32.5" );
+ERROR 1146 (42S02): Table 'compony_211b193.works_on' doesn't exist
+mysql>  insert into WORK_ON values("123456789" ,  "1" , "32.5" );
+Query OK, 1 row affected (0.08 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

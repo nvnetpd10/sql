@@ -1,0 +1,34 @@
+mysql> create database student;
+ERROR 1007 (HY000): Can't create database 'student'; database exists
+mysql> use student;
+Database changed
+mysql> create table detail(name varchar(20) , age int(3) , gender varchar(20));
+Query OK, 0 rows affected, 1 warning (0.09 sec)
+
+mysql> insert into detail values("navneet" , "19" , "Male");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from detail;
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
++---------+------+--------+
+1 row in set (0.00 sec)
+
+ insert into detail(name  , age , gender ) VALUES ("eddddz" , "20" , "male") , ("shank", "19" , "female");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from detail;
++---------+------+--------+
+| name    | age  | gender |
++---------+------+--------+
+| navneet |   19 | Male   |
+| eddddz  |   20 | male   |
+| shank   |   19 | female |
++---------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql>
+
